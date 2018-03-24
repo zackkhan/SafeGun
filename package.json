@@ -1,0 +1,25 @@
+{
+  "name": "uva",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zackkhan/UVA.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zackkhan/UVA/issues"
+  },
+  "homepage": "https://github.com/zackkhan/UVA#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "request": "^2.85.0",
+    "socket.io": "^2.0.4"
+  }
+}
