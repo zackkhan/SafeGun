@@ -3,6 +3,7 @@ var app = express()
 var bodyParser = require('body-parser')
 var request = require('request')
 var gun_list = {}
+var path = require('path')
 var g_api_key = "AIzaSyAlCfacCR71MjuL3VPirz-dMnU0QktlV7E"
 
 function event_object(id, long, lat){
@@ -15,6 +16,7 @@ function event_object(id, long, lat){
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(express.static(__dirname + '/public'));
 
 var http = require('http').Server(app)
 
@@ -23,8 +25,7 @@ function toggleGun(id, status) {
 }
 
 app.get('/', function(req, res) {
-    res.render('home',{});
-    console.log("home");
+    res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
 app.post('/shot', function(req, res){
