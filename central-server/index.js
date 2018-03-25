@@ -42,16 +42,17 @@ app.post('/shot', function(req, res){
     var radius = 2000;
     var keyword = "school"
     gun_list[req.body.id].shots.push(req.body.shot)
-    
-    var url =  "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + 
+
+    var url =  "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" +
     req.body.shot.longitude+","+ req.body.shot.latitude + "&radius=" + radius + "&type=" + keyword  + "&key="+ g_api_key;
     request.get(url, function(error, response, body){
-        
+
         console.log(body)
         var places = JSON.parse(body)
         var place_list = []
         for (var i = 0; i < places.results.length; i++) {
             place_list.push(places.results[i].name)
+
         }
         // if near school, nearbySchool = true
         if (place_list.length >= 1){

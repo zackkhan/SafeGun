@@ -11,7 +11,7 @@ $('#button').click(function() {
 });
 
 // function initMap() {
-//   // pulling up all gun shots of a user with a given ID 
+//   // pulling up all gun shots of a user with a given ID
 //   map = new google.maps.Map(document.getElementById('map'), {
 //       zoom: 2,
 //       center: new google.maps.LatLng(38.986918,-76.942554),
@@ -21,13 +21,8 @@ $('#button').click(function() {
 
 function initMap() {
         // Styles a map in night mode.
-<<<<<<< HEAD
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 38.0336, lng: -78.5080},
-=======
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: new google.maps.LatLng(40.674,-73.945),
->>>>>>> 18ec86dd62285ff50995a53f1a688e859927241e
           zoom: 12,
           styles: [
             {elementType: 'geometry', stylers: [{color: '#242f3e'}]},

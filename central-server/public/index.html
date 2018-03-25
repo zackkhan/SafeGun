@@ -33,13 +33,13 @@
   <h1 style='margin:1rem'>Matt's Smart Gun</h1>
   <p><b>ID 001</b> | <b><span id='num_shots_fired'>0</span></b> Shots Fired <i class="expand arrows icon" id='info'></i></p>
 <button class='button' id='disable'>Enabled</button>
-<button class='button safetrek' id='safetrek'><b>Safe</b>trek</button>
+<button class='button safetrek' id='safetrek'><b>Safe</b>Trek</button>
 </center>
 <div class="ui container">
 <div id="map"></div>
 </div>
 <center>
-<p><b>Warning: </b> This gun is currently on school premises.</p>
+<p id='warning'><b>Warning: </b> This gun is currently on or near school premises.</p>
 <ul id = "nearby_locations"> </ul> <!--To-Do: Populate nearby locations -->
 </center>
 
@@ -64,13 +64,13 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Safetrek is Calling Emergency Services</h5>
+        <h5 class="modal-title">SafeTrek is Calling Emergency Services</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p> You should be connected to a Safetrek responder shortly.</p>
+        <p> You should be connected to a SafeTrek responder shortly.</p>
       </div>
     </div>
   </div>
