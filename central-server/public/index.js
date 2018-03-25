@@ -113,7 +113,6 @@ socket.on('update', function (data) {
         position: latLng,
         map: map
     });
-    counter += 1;
 });
 
 $('#button').click(function() {
@@ -129,7 +128,7 @@ map = new google.maps.Map(document.getElementById('map'), {
   });
 }
 
-$('#alarm_button').on('click', function(e) {
+$('#safetrek').on('click', function(e) {
   const CALLBACK_URL =  '/callback'
   const SAFETREK_API_URL =  'https://api-sandbox.safetrek.io/v1'
   const DEFAULT_ACCURACY =  5
