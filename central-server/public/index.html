@@ -1,7 +1,65 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html >
+<html lang='en'>
   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+      <title>Hack.UVA 2018 | A Safer Smart Gun</title>
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.css">
       <link rel="stylesheet" href="styles.css">
+<<<<<<< HEAD
+
+      <script src="/socket.io/socket.io.js"></script>
+     <script>
+         const socket = io('http://localhost:4000');
+         var gun_list = {}
+         socket.on('connect', function () {
+
+         });
+         socket.on('update', function (data) {
+             gun_list = data;
+             console.log(gun_list)
+         });
+     </script>
+
+  </head>
+<body>
+<center><h1 style='margin:1rem'>Matt's Gun</h1>
+<button class='button' id='disable'>Enabled</button>
+<button class='button safetrek' id='safetrek'><b>Safe</b>trek</button>
+</center>
+<div class="ui container">
+  <ul id = "nearby_locations"> </ul>
+<div id="map"></div>
+
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.5/howler.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+<script src="index.js"></script>
+
+
+<script>
+  $('#disable').click(function(){
+    $(this).toggleClass('disabled');
+    $('body').toggleClass('disabled-bg');
+    if($(this).hasClass('disabled')){
+      $(this).html('<b>Disabled</b>');
+      /*TO-DO disable gun*/
+    }else{
+      $(this).text('Enabled');
+      /*TO-DO re-enable gun*/
+    }
+  })
+
+</script>
+
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo-74AHF-BN-IGpWO1xTL5oHrs-EqZ088&callback=initMap">
+</script>
+=======
       <script src="/socket.io/socket.io.js"></script>
   </head>
 <body>
@@ -21,5 +79,10 @@
   <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo-74AHF-BN-IGpWO1xTL5oHrs-EqZ088&callback=initMap">
   </script>
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> d3e4787328748405cff08bd2dcc79e5b72ca713d
+>>>>>>> 8e71b86dfa149bbcdbef1d42716ec1ae6450c585
 </body>
 </html>
