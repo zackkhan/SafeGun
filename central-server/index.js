@@ -19,6 +19,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(__dirname + '/public'));
 
 var http = require('http').Server(app)
+var io = require('socket.io')(http);
+
+io.on('connection', function(socket){
+    console.log('connected');
+});
 
 function toggleGun(id, status) {
     gun_list[id].canShoot = status;
@@ -38,7 +43,7 @@ app.post('/shot', function(req, res){
     gun_list[req.body.id].shots.push(req.body.shot)
     
     //radius is within meters
-    var url =  "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + 
+    /*var url =  "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + 
     req.body.shot.longitude+","+ req.body.shot.latitude + "&radius=" + radius + "&key="+ g_api_key;
     request.get(url, function(data){
         var place_list = []
@@ -48,7 +53,8 @@ app.post('/shot', function(req, res){
         }
         console.log(place_list)
         // if near school, nearbySchool = true
-    });
+    });*/
+    io.emit('update', gun_list); // emit an event to all connected sockets
     res.sendStatus(200);
 });
 

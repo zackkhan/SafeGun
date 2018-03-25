@@ -18,7 +18,7 @@ function grabDataPromise() {
 }
 
 function sendTriggerToGun(status) {
-  serialport.write(status, function(err) { if (err) console.log('Error on write: ', err.message) });
+  serialport.write(status + "", function(err) { if (err) console.log('Error on write: ', err.message) });
 }
 
 function getLocationPromise() {
@@ -59,8 +59,3 @@ serialport.on('open', function(){
     onShotFired();
   });
 });
-
-
-
-//axios.post('http://localhost:4000/available', {'hello': 'world'})
-

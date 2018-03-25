@@ -2,11 +2,20 @@
 <html>
   <head>
       <link rel="stylesheet" href="styles.css">
+      <script src="/socket.io/socket.io.js"></script>
+      <script>
+          const socket = io('http://localhost:4000');
+          var gun_list = {}
+          socket.on('connect', function () {
+              
+          });
+          socket.on('update', function (data) {
+              gun_list = data;
+              console.log(gun_list)
+          });
+      </script>
   </head>
 <body>
-
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
 
 </body>
 </html>
