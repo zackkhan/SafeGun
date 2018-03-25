@@ -1,6 +1,8 @@
 import numpy as np
 import cv2
 
+#comment
+
 fps = 20.0
 cap = cv2.VideoCapture(0)
 
