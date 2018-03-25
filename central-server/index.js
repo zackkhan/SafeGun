@@ -2,9 +2,24 @@ var express = require('express')
 var app = express()
 var bodyParser = require('body-parser')
 var request = require('request')
-var gun_list = {}
+var gun_list = {'0':
+    { 
+        shots: [ { latitude: 33,
+            longitude: 45,
+            time: '2018-03-25T09:49:54-04:00' },
+          { latitude: 42,
+            longitude: 73,
+            time: '2018-03-25T09:50:03-04:00' },
+          { latitude: 42,
+            longitude: 73,
+            time: '2018-03-25T09:50:09-04:00' } ],
+        canShoot: true,
+        nearbySchool: true 
+    }
+};
 var path = require('path')
 var g_api_key = "AIzaSyAlCfacCR71MjuL3VPirz-dMnU0QktlV7E"
+var canShoot = true;
 
 function event_object(id, long, lat){
     this.id = id;
@@ -23,10 +38,21 @@ var io = require('socket.io')(http);
 
 io.on('connection', function(socket){
     console.log('connected');
+    socket.on('status', function(data) {
+        if (data == 1) {
+            toggleGun(true);
+            canShoot = true;
+        } else {
+            toggleGun(false);
+            canShoot = false;
+        }
+    });
 });
 
-function toggleGun(id, status) {
-    gun_list[id].canShoot = status;
+function toggleGun(status) {
+    for (key in gun_list) {
+        gun_list[key].canShoot = status;
+    }
 }
 
 app.get('/', function(req, res) {
@@ -35,7 +61,7 @@ app.get('/', function(req, res) {
 
 app.post('/shot', function(req, res){
     if (gun_list[req.body.id] == null) {
-        gun_list[req.body.id] = {"shots": [], canShoot: true, nearbySchool: false}
+        gun_list[req.body.id] = {"shots": [], canShoot: true, nearbySchool: true}
         console.log("not found")
     }
     //radius is within meters
@@ -55,22 +81,19 @@ app.post('/shot', function(req, res){
         }
         // if near school, nearbySchool = true
         if (place_list.length >= 1){
-            gun_list[req.body.shot.id].nearbySchool = true;
+            gun_list[req.body.id].nearbySchool = true;
         }
         console.log(place_list)
     });
+    console.log(gun_list)
     io.emit('update', gun_list); // emit an event to all connected sockets
     res.sendStatus(200);
-});
-
-app.get('/video', function(req, res) {
+    console.log(gun_list[req.body.id].shots);
 });
 
 app.get('/id/:gunID', function(req, res) {
-    res.send(gun_list[req.params.gunID].canShoot)
-});
-
-app.post('/video', function(req, res) {
+    //res.send(gun_list[req.params.gunID].canShoot)
+    res.send(canShoot)
 });
 
 http.listen(4000, function() {

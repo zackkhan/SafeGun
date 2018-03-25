@@ -55,8 +55,5 @@ body{
 .disabled-bg #info{color:#74b9ff;}
 
 .modal{
-  marginTop: '0px !important';
-
-  marginLeft: 'auto';
-  marginRight: 'auto';
+ color:black;
 }
