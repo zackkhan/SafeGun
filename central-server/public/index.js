@@ -1,14 +1,11 @@
-<<<<<<< HEAD
-var map;
-=======
-const socket = io('http://localhost:4000');
+/*const socket = io('http://localhost:4000');*/
+/*@ZACK ^ This is raising an error*/
 var gun_list = {}
-var map; 
+var map;
 //keeps track of most recent gun shot
 var id;
 var k;
 
->>>>>>> cd4aa0bbfe0d13e371453c3e8b33c6883e957dc1
 $('#button').click(function() {
     console.log("Pressed");
 
@@ -102,10 +99,7 @@ function initMap() {
         });
       }
 
-<<<<<<< HEAD
-/*
-$('a.make-alarm-request').on('click', function(e) {
-=======
+
 socket.on('connect', function () {
 
 });
@@ -128,14 +122,7 @@ $('#button').click(function() {
     console.log("Pressed");
 });
 
-function initMap() {
-// pulling up all gun shots of a user with a given ID 
-map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 2,
-    center: new google.maps.LatLng(38.986918,-76.942554),
-    mapTypeId: 'terrain'
-  });
-}
+
 
 $('#safetrek').on('click', function(e) {
   const CALLBACK_URL =  '/callback'
@@ -153,13 +140,12 @@ $('#safetrek').on('click', function(e) {
   a_data.services.police = true;
   a_data.services.fire = false;
   a_data.services.medical = false;
-  
+
   a_data["location.coordinates"] = {}
   a_data["location.coordinates"].lat = gun_list[id].shots[k].latitude;
   a_data["location.coordinates"].lng = gun_list[id].shots[k].longitude;
   a_data["location.coordinates"].accuracy= 5;
 
->>>>>>> cd4aa0bbfe0d13e371453c3e8b33c6883e957dc1
     e.preventDefault()
         let url = SAFETREK_API_URL + '/alarms'
         $.ajax({
@@ -180,9 +166,4 @@ $('#safetrek').on('click', function(e) {
             console.log("Alarm is active")
           }
         })
-      });
-
-<<<<<<< HEAD
-*/
-=======
->>>>>>> cd4aa0bbfe0d13e371453c3e8b33c6883e957dc1
+});
