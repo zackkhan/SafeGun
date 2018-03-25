@@ -107,15 +107,16 @@ socket.on('update', function (data) {
     gun_list = data;
     for (key in gun_list)
         id = key
-    console.log(gun_list[id].shots)
+    // console.log(gun_list[id].shots)
     for (key in gun_list[id].shots)
         k = key
-    console.log(gun_list[id].shots[k].latitude)
+    // console.log(gun_list[id].shots[k].latitude)
     var latLng = new google.maps.LatLng(gun_list[id].shots[k].latitude, gun_list[id].shots[k].longitude);
     var marker = new google.maps.Marker({
         position: latLng,
         map: map
     });
+    map.setCenter(new google.maps.LatLng(gun_list[id].shots[k].latitude, gun_list[id].shots[k].longitude));
 });
 
 $('#button').click(function() {

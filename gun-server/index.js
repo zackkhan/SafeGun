@@ -43,19 +43,19 @@ function getLocationPromise() {
 }
 
 function onShotFired() {
-  axios.post('http://localhost:4000/shot', {id: gun_id, shot: getShot()})
-  .then(response => {
-    axios.get(`http://localhost:4000/id/${gun_id}`)
-    .then(canShoot => {
-      if (canShoot.data) {
-        sendTriggerToGun(1);
-      } else {
-        sendTriggerToGun(0);
-      }
-    })
-    .catch(error => {
-      console.log(error);
-    });
+  axios.get(`http://localhost:4000/id/${gun_id}`)
+  .then(canShoot => {
+    if (canShoot.data) {
+      axios.post('http://localhost:4000/shot', {id: gun_id, shot: getShot()})
+      .then(response => {
+      })
+      .catch(error => {
+        console.log(error);
+      });
+      sendTriggerToGun(1);
+    } else {
+      sendTriggerToGun(0);
+    }
   })
   .catch(error => {
     console.log(error);
