@@ -8,13 +8,21 @@ var k;
 
 $('#button').click(function() {
     console.log("Pressed");
-
 });
+
+// function initMap() {
+//   // pulling up all gun shots of a user with a given ID 
+//   map = new google.maps.Map(document.getElementById('map'), {
+//       zoom: 2,
+//       center: new google.maps.LatLng(38.986918,-76.942554),
+//       mapTypeId: 'terrain'
+//     });
+//   }
 
 function initMap() {
         // Styles a map in night mode.
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 40.674, lng: -73.945},
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: new google.maps.LatLng(40.674,-73.945),
           zoom: 12,
           styles: [
             {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
