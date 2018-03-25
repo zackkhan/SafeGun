@@ -3,28 +3,16 @@
   <head>
       <link rel="stylesheet" href="styles.css">
       <script src="/socket.io/socket.io.js"></script>
-      <script>
-          const socket = io('http://localhost:4000');
-          var gun_list = {}
-          socket.on('connect', function () {
-              
-          });
-          socket.on('update', function (data) {
-              gun_list = data;
-              console.log(gun_list)
-          });
-      </script>
   </head>
 <body>
   <h1>SmartG Dashboard</h1>
   <button id = "button">Test Gun Shot</button>
+  <button id = "alarm_button">Test Alarm</button>
   <input type = "text" id = "id_search" placeholder = "Enter Gun ID Here"> </input>
   <h1>Nearby Locations</h1>
   <ul id = "nearby_locations"> </ul>
   <div id="map"></div>
 
-<<<<<<< Updated upstream
-=======
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.5/howler.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -33,6 +21,5 @@
   <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo-74AHF-BN-IGpWO1xTL5oHrs-EqZ088&callback=initMap">
   </script>
->>>>>>> Stashed changes
 </body>
 </html>

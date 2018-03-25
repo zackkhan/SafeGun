@@ -1,8 +1,34 @@
+const socket = io('http://localhost:4000');
+var gun_list = {}
 var map; 
+//keeps track of most recent gun shot
+var id;
+var k;
+
+var counter = 0; 
+socket.on('connect', function () {
+
+});
+socket.on('update', function (data) {
+    gun_list = data;
+    for (key in gun_list)
+        id = key
+    console.log(gun_list[id].shots)
+    for (key in gun_list[id].shots)
+        k = key
+    console.log(gun_list[id].shots[k].latitude)
+    var latLng = new google.maps.LatLng(gun_list[id].shots[k].latitude, gun_list[id].shots[k].longitude);
+    var marker = new google.maps.Marker({
+        position: latLng,
+        map: map
+    });
+    counter += 1;
+});
+
 $('#button').click(function() {
     console.log("Pressed");
-    
 });
+
 function initMap() {
 // pulling up all gun shots of a user with a given ID 
 map = new google.maps.Map(document.getElementById('map'), {
@@ -10,43 +36,32 @@ map = new google.maps.Map(document.getElementById('map'), {
     center: new google.maps.LatLng(38.986918,-76.942554),
     mapTypeId: 'terrain'
   });
-
-    $('#id_search').keypress(function(e) {
-    if(e.which == 13) {
-        var search = $('#id_search').val()
-        var url = '/id/' + search
-        $.ajax({
-            type: 'GET',
-            url: url,
-            data: {},
-            success: function(data, status) {
-                console.log(data)
-                for (var i = 0; i < data.length; i++) {
-                    var latLng = new google.maps.LatLng(data[i].latitude,data[i].longitude);
-                    var marker = new google.maps.Marker({
-                        position: latLng,
-                        map: map
-                    });
-                    }
-            },
-        })
-    }
-});
-
 }
-/*
-$('a.make-alarm-request').on('click', function(e) {
+
+$('#alarm_button').on('click', function(e) {
+  const CALLBACK_URL =  '/callback'
+  const SAFETREK_API_URL =  'https://api-sandbox.safetrek.io/v1'
+  const DEFAULT_ACCURACY =  5
+  const RANDOM_ADDRESS_DATA = '/address-us-100.min.json'
+
+  const ls = localStorage
+  const log = console.log
+  const logErr = console.error
+  const logWarn = console.warn
+
+  var a_data = {}
+  a_data.services = {}
+  a_data.services.police = true;
+  a_data.services.fire = false;
+  a_data.services.medical = false;
+  
+  a_data["location.coordinates"] = {}
+  a_data["location.coordinates"].lat = gun_list[id].shots[k].latitude;
+  a_data["location.coordinates"].lng = gun_list[id].shots[k].longitude;
+  a_data["location.coordinates"].accuracy= 5;
+
     e.preventDefault()
-    if (state.get('status') === 'active-alarm') {
-      log('Alarm status is currently active and will reset in 10s or less.')
-    } else if(state.get('status') !== 'processing') {
-      if(state.get('access_token')) {
-        $('.alarm').removeClass('alarm-red')
-        $('.alarm-status').text('Requesting...')
-        state.set('status', 'processing')
         let url = SAFETREK_API_URL + '/alarms'
-        let data = $('code.alarm-request').text()
-        log('Requesting Alarm creation with data:\n', data)
         $.ajax({
           url: url,
           type: 'post',
@@ -55,29 +70,15 @@ $('a.make-alarm-request').on('click', function(e) {
           },
           contentType: 'application/json',
           dataType: 'json',
-          data: data,
+          data: JSON.stringify(a_data),
           success: (data) => {
             log('Alarm created successfully! Server response:\n', JSON.stringify(data, null, 2), '\nAlarm status will reset in 10s.')
-            $('.alarm').addClass('alarm-red')
-            $('.alarm-status').text('Alarm created! Check console for JSON response.')
           },
-          error: (xhr, status, err) => { logErr('Error:', err) },
+          error: (xhr, status, err) => { logErr('Error:', err)
+        console.log(status) },
           complete: () => {
-            state.set('status', 'active-alarm')
-            setTimeout(() => {
-              state.set('status', 'connected')
-              $('.alarm').removeClass('alarm-red')
-              $('.alarm-status').text('')
-              log('Alarm status reset!')
-            }, 10000)
+            console.log("Alarm is active")
           }
         })
-      } else {
-        logErr('No valid access_token found! Connect to SafeTrek before requesting Alarm creation.')
-      }
-    }
-  })
+      });
 
-
-*/
-                  
