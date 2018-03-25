@@ -47,6 +47,7 @@ io.on('connection', function(socket){
             canShoot = false;
         }
     });
+    socket.emit('updateFull', gun_list);
 });
 
 function toggleGun(status) {

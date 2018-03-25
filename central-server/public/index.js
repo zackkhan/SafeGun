@@ -130,7 +130,8 @@ function initMap() {
       }
 
 // "<a href=videos/video"+gun_list[id].shots.length+".avi /><i class='play icon'></i> +</a>"
-socket.on('connect', function () {
+socket.on('updateFull', function (data) {
+  gun_list = data;
     for (k in gun_list['0'].shots) {
       var shot = gun_list['0'].shots[k];
       $('#shooting_log').append('<li>'+'<b>Time:</b> ' + shot.time
@@ -141,11 +142,9 @@ socket.on('connect', function () {
 });
 socket.on('update', function (data) {
     gun_list = data;
-    for (key in gun_list)
-        id = key
+    id = '0';
     // console.log(gun_list[id].shots)
-    for (key in gun_list[id].shots)
-        k = key
+    k = gun_list[id].shots.length - 1
     // console.log(gun_list[id].shots[k].latitude)
     var latLng = new google.maps.LatLng(gun_list[id].shots[k].latitude, gun_list[id].shots[k].longitude);
     var marker = new google.maps.Marker({
