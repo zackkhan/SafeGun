@@ -27,8 +27,11 @@
   </head>
 <body>
 
-<center><h1 style='margin:1rem'>Matt's Smart Gun</h1>
-  <p>ID 001 | <b><span id='num_shots_fired'>0</span></b> Shots fired <i class="expand arrows icon" id='info'></i></p>
+<center>
+  <!--img src='safegun_logo.png' style='max-width:120px;position:fixed;top:10px;left:300px;'-->
+
+  <h1 style='margin:1rem'>Matt's Smart Gun</h1>
+  <p><b>ID 001</b> | <b><span id='num_shots_fired'>0</span></b> Shots Fired <i class="expand arrows icon" id='info'></i></p>
 <button class='button' id='disable'>Enabled</button>
 <button class='button safetrek' id='safetrek'><b>Safe</b>trek</button>
 </center>
@@ -36,7 +39,7 @@
 <div id="map"></div>
 </div>
 <center>
-<p><b>Warning: </b> Gun is currently on school premises. Be careful.</p>
+<p><b>Warning: </b> This gun is currently on school premises.</p>
 <ul id = "nearby_locations"> </ul> <!--To-Do: Populate nearby locations -->
 </center>
 
@@ -73,7 +76,9 @@
   </div>
 </div>
 
-
+<footer style='position:fixed;bottom:0px;right:0px;'>
+  <p style='margin:1rem;color:grey;'>©2018 SafeGun</p>
+</footer>
 
 
 
