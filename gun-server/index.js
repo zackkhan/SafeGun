@@ -3,7 +3,7 @@ uuid = require('uuid'),
 moment = require('moment'),
 SerialPort = require("serialport"),
 serialport = new SerialPort("COM5"),
-gun_id = uuid(),
+gun_id = '0',
 common_locations = [
   {'latitude': 57, 'longitude': 9},
   {'latitude': 42, 'longitude': 73},
@@ -13,7 +13,8 @@ common_locations = [
 ];
 
 function getLatLong() {
-  return common_locations[Math.floor(Math.random() * 5)]
+  // return common_locations[Math.floor(Math.random() * 5)]
+  return {'latitude': 38, 'longitude': -79};
 }
 
 function getShot() {

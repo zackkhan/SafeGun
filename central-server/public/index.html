@@ -9,7 +9,7 @@
       <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.css">
       <link rel="stylesheet" href="styles.css">
       <!--link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/components/modal.min.css'-->
-      <link rel='stylesheet' href='UI-Modal-master/modal.css'>
+    
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
       <script src="/socket.io/socket.io.js"></script>
      <script>
@@ -39,7 +39,11 @@
 <div id="map"></div>
 </div>
 <center>
+<<<<<<< HEAD
 <p id='warning'><b>Warning: </b> This gun is currently on or near school premises.</p>
+=======
+<p id='warning'><b>Warning: </b> This gun is currently on school premises.</p>
+>>>>>>> 0a08a032e4e83d4b79636d7f02bab0178afb7cf9
 <ul id = "nearby_locations"> </ul> <!--To-Do: Populate nearby locations -->
 </center>
 
@@ -89,7 +93,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
 <!--script src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/components/modal.min.js'></script-->
-<script src='UI-Modal-master/modal.js'></script>
 
 <script src="index.js"></script>
 
@@ -102,10 +105,10 @@
     $('body').toggleClass('disabled-bg');
     if($(this).hasClass('disabled')){
       $(this).html('<b>Disabled</b>');
-      /*TO-DO disable gun*/
+      socket.emit('status', 0);
     }else{
       $(this).text('Enabled');
-      /*TO-DO re-enable gun*/
+      socket.emit('status', 1);
     }
   })
 
