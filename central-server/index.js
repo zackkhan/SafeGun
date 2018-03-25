@@ -86,10 +86,8 @@ app.post('/shot', function(req, res){
         }
         console.log(place_list)
     });
-    console.log(gun_list)
     io.emit('update', gun_list); // emit an event to all connected sockets
     res.sendStatus(200);
-    console.log(gun_list[req.body.id].shots);
 });
 
 app.get('/id/:gunID', function(req, res) {

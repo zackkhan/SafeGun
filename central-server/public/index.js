@@ -136,7 +136,8 @@ socket.on('updateFull', function (data) {
       var shot = gun_list['0'].shots[k];
       $('#shooting_log').append('<li>'+'<b>Time:</b> ' + shot.time
       +'\n<b>Lat:</b> ' + shot.latitude
-      +', <b>Long:</b> ' + shot.longitude+'</li>');
+      +', <b>Long:</b> ' + shot.longitude+
+      " <a href=videos/video"+k+".mp4 ><i class='play icon'></i></a></li>");
     }
     $('#num_shots_fired').text(gun_list['0'].shots.length);
 });
@@ -154,10 +155,12 @@ socket.on('update', function (data) {
     map.setCenter(new google.maps.LatLng(gun_list[id].shots[k].latitude, gun_list[id].shots[k].longitude));
     $('#num_shots_fired').text(gun_list[id].shots.length);
     if(gun_list[id].nearbySchool){
+      $('#warning').show();
       $('#shooting_log').append("<li style='color:red'><b>Time: " +gun_list[id].shots[k].time
       +'\nLat: ' +gun_list[id].shots[k].latitude
       +', Long: ' +gun_list[id].shots[k].longitude+'</b></li>');
     }else{
+      $('#warning').hide();
       $('#shooting_log').append('<li>'+'<b>Time:</b> ' +gun_list[id].shots[k].time
       +'\n<b>Lat:</b> ' +gun_list[id].shots[k].latitude
       +', <b>Long:</b> ' +gun_list[id].shots[k].longitude+'</li>');
