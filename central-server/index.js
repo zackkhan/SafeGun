@@ -98,6 +98,7 @@ app.post('/shot', function(req, res){
         var place_list = []
         for (var i = 0; i < places.results.length; i++) {
             place_list.push(places.results[i].name)
+
         }
         // if near school, nearbySchool = true
         if (place_list.length >= 1){
