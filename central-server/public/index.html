@@ -8,8 +8,9 @@
       <title>Hack.UVA 2018 | A Safer Smart Gun</title>
       <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.css">
       <link rel="stylesheet" href="styles.css">
-<<<<<<< HEAD
-
+      <!--link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/components/modal.min.css'-->
+      <link rel='stylesheet' href='UI-Modal-master/modal.css'>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
       <script src="/socket.io/socket.io.js"></script>
      <script>
          const socket = io('http://localhost:4000');
@@ -25,23 +26,72 @@
 
   </head>
 <body>
-<center><h1 style='margin:1rem'>Matt's Gun</h1>
+
+<center><h1 style='margin:1rem'>Matt's Smart Gun</h1>
+  <p>ID 001 | <b><span id='num_shots_fired'>0</span></b> Shots fired <i class="expand arrows icon" id='info'></i></p>
 <button class='button' id='disable'>Enabled</button>
 <button class='button safetrek' id='safetrek'><b>Safe</b>trek</button>
 </center>
 <div class="ui container">
-  <ul id = "nearby_locations"> </ul>
 <div id="map"></div>
-
 </div>
+<center>
+<p><b>Warning: </b> Gun is currently on school premises. Be careful.</p>
+<ul id = "nearby_locations"> </ul> <!--To-Do: Populate nearby locations -->
+</center>
+
+
+<div class="modal fade" id='shooting_log_modal' tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Shooting Log</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul id = "shooting_log"> </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id='safetrek_modal' tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Safetrek is Calling Emergency Services</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p> You should be connected to a Safetrek responder shortly.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 <script src="/socket.io/socket.io.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.5/howler.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+<!--script src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/components/modal.min.js'></script-->
+<script src='UI-Modal-master/modal.js'></script>
+
 <script src="index.js"></script>
 
 
 <script>
+
+
   $('#disable').click(function(){
     $(this).toggleClass('disabled');
     $('body').toggleClass('disabled-bg');
@@ -54,44 +104,24 @@
     }
   })
 
-</script>
+  $("#safetrek").click(function(){
+    /*TO-DO ping safetrek*/
+    $('#safetrek_modal').modal({
+    keyboard: true
+  });})
 
+  $("#info").click(function(){
+    $('#shooting_log_modal').modal({
+    keyboard: true
+  })
+    /*TO-DO: Populate shooting log*/
+
+  })
+
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo-74AHF-BN-IGpWO1xTL5oHrs-EqZ088&callback=initMap">
 </script>
-=======
-      <script src="/socket.io/socket.io.js"></script>
-      <script>
-          const socket = io('http://localhost:4000');
-          var gun_list = {}
-          socket.on('connect', function () {
-              
-          });
-          socket.on('update', function (data) {
-              gun_list = data;
-              console.log(gun_list)
-          });
-      </script>
-  </head>
-<body>
-  <h1>SmartG Dashboard</h1>
-  <button id = "button">Test Gun Shot</button>
-  <input type = "text" id = "id_search" placeholder = "Enter Gun ID Here"> </input>
-  <h1>Nearby Locations</h1>
-  <ul id = "nearby_locations"> </ul>
-  <div id="map"></div>
-
-<<<<<<< Updated upstream
-=======
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.5/howler.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
-  <script src="index.js"></script>
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo-74AHF-BN-IGpWO1xTL5oHrs-EqZ088&callback=initMap">
-  </script>
->>>>>>> Stashed changes
->>>>>>> d3e4787328748405cff08bd2dcc79e5b72ca713d
 </body>
 </html>
