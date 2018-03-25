@@ -34,13 +34,14 @@ app.get('/', function(req, res) {
 });
 
 app.post('/shot', function(req, res){
-    if (gun_list[req.body.id] == null) {
-        gun_list[req.body.id] = {"shots": [], canShoot: true, nearbySchool: false}
+    if (gun_list[req.body.shot.id] == null) {
+        gun_list[req.body.shot.id] = {"shots": [], canShoot: true, nearbySchool: false}
         console.log("not found")
     }
     var radius = 1000;
     var keyword = "school"
-    gun_list[req.body.id].shots.push(req.body.shot)
+    gun_list[req.body.shot.id].shots.push(req.body.shot)
+    console.log(req.body.shot)
     
     //radius is within meters
     /*var url =  "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + 
@@ -59,7 +60,6 @@ app.post('/shot', function(req, res){
 });
 
 app.get('/video', function(req, res) {
-    res.render('home',{});
 });
 
 app.get('/id/:gunID', function(req, res) {
