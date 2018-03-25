@@ -8,7 +8,7 @@ var gun_list = {'0':
             longitude: 45,
             time: '2018-03-25T09:49:54-04:00' },
           { latitude: 42,
-            longitude: 73,
+            longitude: 73, 
             time: '2018-03-25T09:50:03-04:00' },
           { latitude: 42,
             longitude: 73,

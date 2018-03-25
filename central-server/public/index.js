@@ -13,7 +13,8 @@ var gun_list = {'0':
           longitude: 106,
           time: '2018-03-25T09:50:09-04:00' } ],
       canShoot: true,
-      nearbySchool: false 
+      nearbySchool: false,
+      lockdown: false
   }
 };
 var map;
@@ -36,7 +37,7 @@ $('#button').click(function() {
 
 function initMap() {
         // Styles a map in night mode.
-        var map = new google.maps.Map(document.getElementById('map'), {
+        map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 38.0336, lng: -78.5080},
           zoom: 12,
           styles: [
@@ -175,13 +176,12 @@ socket.on('update', function (data) {
     // console.log(gun_list[id].shots)
     k = gun_list[id].shots.length - 1
     // console.log(gun_list[id].shots[k].latitude)
-
+    map.setCenter(new google.maps.LatLng(gun_list[id].shots[k].latitude, gun_list[id].shots[k].longitude));
     var latLng = new google.maps.LatLng(gun_list[id].shots[k].latitude, gun_list[id].shots[k].longitude);
     var marker = new google.maps.Marker({
         position: latLng,
         map: map
     });
-    map.setCenter(new google.maps.LatLng(gun_list[id].shots[k].latitude, gun_list[id].shots[k].longitude));
     $('#num_shots_fired').text(gun_list[id].shots.length);
     if (gun_list[id].lockdown){
       $('#warning2').text("Warning. This gun is in a LOCKDOWN location.");
