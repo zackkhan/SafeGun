@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 body{
   background-color: #ecf0f1;
@@ -49,3 +50,20 @@ body{
 
        height:50vh;
       margin-bottom:20px;}
+=======
+p {
+  color: red;
+}
+
+ /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+       #map {
+        height: 700px;
+        width: 700px;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+>>>>>>> d3e4787328748405cff08bd2dcc79e5b72ca713d

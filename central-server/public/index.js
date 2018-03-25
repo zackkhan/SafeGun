@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var map;
 $('#button').click(function() {
     console.log("Pressed");
@@ -91,6 +92,44 @@ function initMap() {
         });
       }
 
+=======
+var map; 
+$('#button').click(function() {
+    console.log("Pressed");
+    
+});
+function initMap() {
+// pulling up all gun shots of a user with a given ID 
+map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 2,
+    center: new google.maps.LatLng(38.986918,-76.942554),
+    mapTypeId: 'terrain'
+  });
+
+    $('#id_search').keypress(function(e) {
+    if(e.which == 13) {
+        var search = $('#id_search').val()
+        var url = '/id/' + search
+        $.ajax({
+            type: 'GET',
+            url: url,
+            data: {},
+            success: function(data, status) {
+                console.log(data)
+                for (var i = 0; i < data.length; i++) {
+                    var latLng = new google.maps.LatLng(data[i].latitude,data[i].longitude);
+                    var marker = new google.maps.Marker({
+                        position: latLng,
+                        map: map
+                    });
+                    }
+            },
+        })
+    }
+});
+
+}
+>>>>>>> d3e4787328748405cff08bd2dcc79e5b72ca713d
 /*
 $('a.make-alarm-request').on('click', function(e) {
     e.preventDefault()
@@ -137,3 +176,7 @@ $('a.make-alarm-request').on('click', function(e) {
 
 
 */
+<<<<<<< HEAD
+=======
+                  
+>>>>>>> d3e4787328748405cff08bd2dcc79e5b72ca713d

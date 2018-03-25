@@ -1,8 +1,11 @@
 import numpy as np
 import cv2
 
+<<<<<<< HEAD
 #comment
 
+=======
+>>>>>>> d3e4787328748405cff08bd2dcc79e5b72ca713d
 fps = 20.0
 cap = cv2.VideoCapture(0)
 
