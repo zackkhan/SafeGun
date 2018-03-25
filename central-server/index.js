@@ -20,6 +20,7 @@ var gun_list = {'0':
 var path = require('path')
 var g_api_key = "AIzaSyAlCfacCR71MjuL3VPirz-dMnU0QktlV7E"
 var canShoot = true;
+var lockdown_locations = []
 
 function event_object(id, long, lat){
     this.id = id;
@@ -47,6 +48,9 @@ io.on('connection', function(socket){
             canShoot = false;
         }
     });
+    socket.on('lockdown', function(data){
+        lockdown_locations = data
+    });
     socket.emit('updateFull', gun_list);
 });
 
@@ -62,19 +66,34 @@ app.get('/', function(req, res) {
 
 app.post('/shot', function(req, res){
     if (gun_list[req.body.id] == null) {
-        gun_list[req.body.id] = {"shots": [], canShoot: true, nearbySchool: true}
+        gun_list[req.body.id] = {"shots": [], canShoot: true, nearbySchool: true, lockdown: false}
         console.log("not found")
     }
     //radius is within meters
     var radius = 2000;
     var keyword = "school"
+    nearby_places = []
     gun_list[req.body.id].shots.push(req.body.shot)
-    
+
     var url =  "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + 
-    req.body.shot.longitude+","+ req.body.shot.latitude + "&radius=" + radius + "&type=" + keyword  + "&key="+ g_api_key;
+    req.body.shot.latitude+","+ req.body.shot.longitude + "&radius=" + radius +"&key="+ g_api_key;
     request.get(url, function(error, response, body){
-        
-        console.log(body)
+        var res = JSON.parse(body).results;
+        for (var i = 0; i < res.length; i++) {
+            nearby_places.push(res[i].name);
+        }
+    });
+
+    for (var i = 0; i < lockdown_locations.length; i++) {
+        if (lockdown_locations[i].name in nearby_places)
+             gun_list[req.body.id].lockdown = true;    
+             console.log("LOCKEDDOWN");  
+     }
+
+    var url =  "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + 
+    req.body.shot.latitude+","+ req.body.shot.longitude + "&radius=" + radius + "&type=" + keyword  + "&key="+ g_api_key;
+    request.get(url, function(error, response, body){
+        //console.log(body)
         var places = JSON.parse(body)
         var place_list = []
         for (var i = 0; i < places.results.length; i++) {
